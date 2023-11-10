@@ -1,15 +1,23 @@
 %option noyywrap
-/* Analizador para un lenguaje al estilo de Pascal */
+/* Analizador para un lenguaje al estilo de Melody */
 
 %{
 /* se necesita esto para la llamada a atof() mas abajo */
 #include <math.h>
 %}
 
+LETRA [A-Za-z0-9]
+PALABRA {LETRA}+
+ORACION ({PALABRA}[ ])*{PALABRA}\.
+
+COMENTARIO "b_"{ORACION}"_b"
+
 DIGITO   [0-9]
 ID       [a-zA-Z][a-z0-9]*
 
 %%
+
+{COMENTARIO} { printf( "Un Comentario: %s\n", yytext );}                                                                           
 
 -?{DIGITO}+   { printf( "Un entero: %s (%d)\n", yytext, atoi( yytext ) );
             	    }
@@ -38,7 +46,7 @@ ID       [a-zA-Z][a-z0-9]*
 
 main( )
     {
-    printf(" Analizador para algunos elementos de un lenguaje al estilo de Pascal\n");
+    printf(" Analizador para algunos elementos de un lenguaje al estilo de Melody\n");
     yyin = fopen( "prog.pas", "r" );
     yylex();
     printf("Presiones una tecla para terminar...");
