@@ -7,7 +7,7 @@
 %}
 
 DIGITO   [0-9]
-ID       [a-z][a-z0-9]*
+ID       [a-zA-Z][a-z0-9]*
 
 %%
 
@@ -17,14 +17,14 @@ ID       [a-z][a-z0-9]*
 ""|"-"{DIGITO}+"."{DIGITO}*      {  printf( "Un real: %s (%g)\n", yytext, atof( yytext ) );
                                            }
 
-"program"|"begin"|"end"|"procedure"|"function"|"if"|"then"|"else"|"for"|"do"|"while"|"repaet"|"until" { printf( "Una palabra clave: %s\n", yytext );
+"DO"|"RE"|"MI"|"FA"|"SOL"|"LA"|"SI" { printf( "Una palabra clave: %s\n", yytext );
                                                                            }
 
 {ID}       { printf( "Un identificador: %s\n", yytext ); }
 
-"+"|"-"|"*"|"/"   { printf( "Un operador: %s\n", yytext ); }
+"JUNTAR"|"SEPARAR"|"AUMENTAR"|"DISMINUIR"|"DISMUNUIR"|"IGUAL"|"DIFERENTE"|"CONJUNTO"|"ORQUESTA"|"MAS_ALTO_QUE"|"MAS_BAJO_QUE"|"ALTO_O_IGUAL_A"|"BAJO_O_IGUAL_A"   { printf( "Un operador: %s\n", yytext ); }
 
-":"|":=" { printf( "Una asignacion: %s\n", yytext ); }
+"ASIGNAR" { printf( "Una asignacion: %s\n", yytext ); }
 
 ","|";" { printf( "Un separador: %s\n", yytext ); }
 
