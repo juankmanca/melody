@@ -6,18 +6,24 @@
 #include <math.h>
 %}
 
-LETRA [A-Za-z0-9]
-PALABRA {LETRA}+
-ORACION ({PALABRA}[ ])*{PALABRA}\.
-
 DIGITO   [0-9]
 ID       [a-zA-Z][a-z0-9]*
-COMENTARIO ^#([A-Za-z])\w* 
+COMENTARIO ^#(.*)$
+STRING "b_"[^"_"]*"_b"
 
 %%
 
+"COMPAS" { printf("Instrucción delimitadora: %s\n", yytext); }
 
-"b_"|"_b" { printf( "Esto es una cadena de caracteres: %s\n", yytext );}     
+"f" { printf("Instrucción de decisión 'if': %s\n", yytext); }
+
+"ff" { printf("Instrucción de decisión 'else': %s\n", yytext); }
+
+"p" { printf("Instrucción de decisión 'CASE': %s\n", yytext); }
+
+"Case" { printf("Instrucción 'Case': %s\n", yytext); }
+
+{STRING} { printf("Esto es una cadena de caracteres: %s\n", yytext); }
 
 -?{DIGITO}+   { printf( "Un entero: %s (%d)\n", yytext, atoi( yytext ) ); }
 
@@ -39,12 +45,16 @@ COMENTARIO ^#([A-Za-z])\w*
 
 .                 { printf( "Error lexico: %s\n", yytext ); }
 
+"Musica.Escuchar()" { printf("Instrucción de entrada: %s\n", yytext); }
+
+"Musica.Recitar()"|"Musica.Recitar("{STRING}")" { printf("Instrucción de salida: %s\n", yytext); }
+
 %%
 
 main( )
     {
     printf(" Analizador para algunos elementos de un lenguaje al estilo de Melody 1.0\n");
-    yyin = fopen( "prog.pas", "r" );
+    yyin = fopen( "program.melody", "r" );
     yylex();
     printf("Presiones una tecla para terminar...");
     getchar();

@@ -1,0 +1,11 @@
+#ejemplo de instruccion de disicion
+Musica.Recitar(b_ Por favor ingresa tu edad: _b)
+DO edad ASIGNAR Musica.Escuchar()
+f edad MAS_ALTO_QUE 18
+COMPAS
+Musica.Recitar(b_ Eres mayor de edad. Puedes ingresar _b)
+COMPAS
+ff
+COMPAS
+Musica.Recitar(b_ Eres menor de edad. No Puedes ingresar _b)
+COMPAS
