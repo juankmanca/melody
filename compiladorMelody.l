@@ -1,7 +1,7 @@
 %option noyywrap
 %option yylineno
 %{
-#include "comp.tab.h"
+#include "var.tab.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -57,7 +57,7 @@ STRING "b_"[^"_"]*"_b"
 
 .                 {printf("error lexico %s, en la linea %d\n", yytext, yylineno); return yytext[0];}
 
-"main"                                               {return tkn_main;}       
+"main"                                               {return tk_main;}       
 
 
 "Musica.Escuchar()" { printf("Instrucción de entrada: %s\n", yytext); }
@@ -65,12 +65,3 @@ STRING "b_"[^"_"]*"_b"
 "Musica.Recitar()"|"Musica.Recitar("{STRING}")" { printf("Instrucción de salida: %s\n", yytext); }
 
 %%
-
-main( )
-    {
-    printf(" Analizador para algunos elementos de un lenguaje al estilo de Melody 1.0\n");
-    yyin = fopen( "program.melody", "r" );
-    yylex();
-    printf("Presiones una tecla para terminar...");
-    getchar();
- }

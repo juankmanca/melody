@@ -523,7 +523,7 @@ char *yytext;
 #line 1 "compiladorMelody.l"
 #define INITIAL 0
 #line 4 "compiladorMelody.l"
-#include "comp.tab.h"
+#include "var.tab.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -821,112 +821,112 @@ YY_RULE_SETUP
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 31 "compiladorMelody.l"
+#line 30 "compiladorMelody.l"
 {return tk_int ;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 32 "compiladorMelody.l"
+#line 31 "compiladorMelody.l"
 {return tk_float ;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 33 "compiladorMelody.l"
+#line 32 "compiladorMelody.l"
 {return tk_double ;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 34 "compiladorMelody.l"
+#line 33 "compiladorMelody.l"
 {return tk_string ;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 35 "compiladorMelody.l"
+#line 34 "compiladorMelody.l"
 {return tk_char ;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 36 "compiladorMelody.l"
+#line 35 "compiladorMelody.l"
 {return tk_bool ;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 37 "compiladorMelody.l"
+#line 36 "compiladorMelody.l"
 {return tk_object ;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 39 "compiladorMelody.l"
+#line 37 "compiladorMelody.l"
 { return id; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 41 "compiladorMelody.l"
+#line 38 "compiladorMelody.l"
 {return tk_JUNTAR; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 42 "compiladorMelody.l"
+#line 39 "compiladorMelody.l"
 {return tk_SEPARAR; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 43 "compiladorMelody.l"
+#line 40 "compiladorMelody.l"
 {return tk_AUMENTAR; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 44 "compiladorMelody.l"
+#line 41 "compiladorMelody.l"
 {return tk_DISMINUIR; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 45 "compiladorMelody.l"
+#line 42 "compiladorMelody.l"
 {return tk_DISMUNUIR; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 46 "compiladorMelody.l"
+#line 43 "compiladorMelody.l"
 {return tk_IGUAL; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 47 "compiladorMelody.l"
+#line 44 "compiladorMelody.l"
 {return tk_DIFERENTE; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 48 "compiladorMelody.l"
+#line 45 "compiladorMelody.l"
 {return tk_CONJUNTO; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 49 "compiladorMelody.l"
+#line 46 "compiladorMelody.l"
 {return tk_ORQUESTA; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 50 "compiladorMelody.l"
+#line 47 "compiladorMelody.l"
 {return tk_MAS_ALTO_QUE; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 51 "compiladorMelody.l"
+#line 48 "compiladorMelody.l"
 {return tk_MAS_BAJO_QUE; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 52 "compiladorMelody.l"
+#line 49 "compiladorMelody.l"
 {return tk_ALTO_O_IGUAL_A; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 53 "compiladorMelody.l"
+#line 50 "compiladorMelody.l"
 {return tk_BAJO_O_IGUAL_A; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 55 "compiladorMelody.l"
+#line 52 "compiladorMelody.l"
 { return yytext[0]; }
 	YY_BREAK
 case 31:
@@ -934,37 +934,37 @@ case 31:
 yy_c_buf_p = yy_cp -= 1;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 57 "compiladorMelody.l"
+#line 54 "compiladorMelody.l"
 { printf( "Un comentario: %s\n", yytext ); }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 59 "compiladorMelody.l"
+#line 56 "compiladorMelody.l"
 /* se come los espacios en blanco */
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 61 "compiladorMelody.l"
+#line 58 "compiladorMelody.l"
 {printf("error lexico %s, en la linea %d\n", yytext, yylineno); return yytext[0];}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 63 "compiladorMelody.l"
-{return tkn_main;}       
+#line 60 "compiladorMelody.l"
+{return tk_main;}       
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 66 "compiladorMelody.l"
+#line 63 "compiladorMelody.l"
 { printf("Instrucción de entrada: %s\n", yytext); }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 68 "compiladorMelody.l"
+#line 65 "compiladorMelody.l"
 { printf("Instrucción de salida: %s\n", yytext); }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 70 "compiladorMelody.l"
+#line 67 "compiladorMelody.l"
 ECHO;
 	YY_BREAK
 #line 971 "comp.c"
@@ -1853,14 +1853,5 @@ int main()
 	return 0;
 	}
 #endif
-#line 70 "compiladorMelody.l"
+#line 67 "compiladorMelody.l"
 
-
-main( )
-    {
-    printf(" Analizador para algunos elementos de un lenguaje al estilo de Melody 1.0\n");
-    yyin = fopen( "program.melody", "r" );
-    yylex();
-    printf("Presiones una tecla para terminar...");
-    getchar();
- }

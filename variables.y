@@ -36,6 +36,7 @@ yyerror (char *s);
 %token tk_MAS_BAJO_QUE
 %token tk_ALTO_O_IGUAL_A
 %token tk_BAJO_O_IGUAL_A
+%token tk_main
 
 %%
 /* Gramática */
