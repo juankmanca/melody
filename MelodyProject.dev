@@ -1,6 +1,6 @@
 [Project]
-FileName=Project1.dev
-Name=Project1
+FileName=MelodyProject.dev
+Name=MelodyProject
 UnitCount=1
 Type=1
 Ver=1
@@ -18,7 +18,7 @@ Icon=
 ExeOutput=
 ObjectOutput=
 OverrideOutput=0
-OverrideOutputName=Project1.exe
+OverrideOutputName=
 HostApplication=
 Folders=
 CommandLine=
@@ -27,12 +27,12 @@ CustomMakefile=
 IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
-CompilerSettings=0000000000000000001000
+CompilerSettings=
 
 [Unit1]
 FileName=comp.c
 CompileCpp=0
-Folder=Project1
+Folder=MelodyProject
 Compile=1
 Link=1
 Priority=1000

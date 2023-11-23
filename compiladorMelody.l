@@ -1,5 +1,11 @@
 %option noyywrap
-/* Analizador para un lenguaje al estilo de Melody */
+%option yylineno
+%{
+#include "comp.tab.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+%}
 
 %{
 /* se necesita esto para la llamada a atof() mas abajo */
@@ -13,37 +19,46 @@ STRING "b_"[^"_"]*"_b"
 
 %%
 
-"COMPAS" { printf("Instrucción delimitadora: %s\n", yytext); }
+"COMPAS" { return tk_DELIMITADOR; }
+"f" { return tk_if; }
+"ff" { return tk_else; }
+"p" { return tk_switch; }
+"Case" { return tk_case; }
+{STRING} { return tk_string; }
+-?{DIGITO}+   { return numero; }
+""|"-"{DIGITO}+"."{DIGITO}*      { return tk_real; }
+"DO"    {return tk_int ;}
+"RE"    {return tk_float ;}
+"MI"    {return tk_double ;}
+"FA"    {return tk_string ;}
+"SOL"   {return tk_char ;}
+"LA"    {return tk_bool ;}
+"SI"    {return tk_object ;}
+{ID}       { return id; }
+"JUNTAR"        {return tk_JUNTAR; }
+"SEPARAR"       {return tk_SEPARAR; }
+"AUMENTAR"      {return tk_AUMENTAR; }
+"DISMINUIR"     {return tk_DISMINUIR; }
+"DISMUNUIR"     {return tk_DISMUNUIR; }
+"IGUAL"     {return tk_IGUAL; }
+"DIFERENTE"     {return tk_DIFERENTE; }
+"CONJUNTO"      {return tk_CONJUNTO; }
+"ORQUESTA"      {return tk_ORQUESTA; }
+"MAS_ALTO_QUE"      {return tk_MAS_ALTO_QUE; }
+"MAS_BAJO_QUE"      {return tk_MAS_BAJO_QUE; }
+"ALTO_O_IGUAL_A"        {return tk_ALTO_O_IGUAL_A; }
+"BAJO_O_IGUAL_A"        {return tk_BAJO_O_IGUAL_A; }
 
-"f" { printf("Instrucción de decisión 'if': %s\n", yytext); }
-
-"ff" { printf("Instrucción de decisión 'else': %s\n", yytext); }
-
-"p" { printf("Instrucción de decisión 'CASE': %s\n", yytext); }
-
-"Case" { printf("Instrucción 'Case': %s\n", yytext); }
-
-{STRING} { printf("Esto es una cadena de caracteres: %s\n", yytext); }
-
--?{DIGITO}+   { printf( "Un entero: %s (%d)\n", yytext, atoi( yytext ) ); }
-
-""|"-"{DIGITO}+"."{DIGITO}*      {  printf( "Un real: %s (%g)\n", yytext, atof( yytext ) ); }
-
-"DO"|"RE"|"MI"|"FA"|"SOL"|"LA"|"SI" { printf( "Una palabra clave: %s\n", yytext ); }
-
-{ID}       { printf( "Un identificador: %s\n", yytext ); }
-
-"JUNTAR"|"SEPARAR"|"AUMENTAR"|"DISMINUIR"|"DISMUNUIR"|"IGUAL"|"DIFERENTE"|"CONJUNTO"|"ORQUESTA"|"MAS_ALTO_QUE"|"MAS_BAJO_QUE"|"ALTO_O_IGUAL_A"|"BAJO_O_IGUAL_A"   { printf( "Un operador: %s\n", yytext ); }
-
-"ASIGNAR" { printf( "Una asignacion: %s\n", yytext ); }
-
-","|";" { printf( "Un separador: %s\n", yytext ); }
+"ASIGNAR"|","|";" { return yytext[0]; }
 
 {COMENTARIO}   { printf( "Un comentario: %s\n", yytext ); }
 
 [ \t\n]+          /* se come los espacios en blanco */
 
-.                 { printf( "Error lexico: %s\n", yytext ); }
+.                 {printf("error lexico %s, en la linea %d\n", yytext, yylineno); return yytext[0];}
+
+"main"                                               {return tkn_main;}       
+
 
 "Musica.Escuchar()" { printf("Instrucción de entrada: %s\n", yytext); }
 
