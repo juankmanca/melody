@@ -53,7 +53,7 @@ STRING "b_"[^"_"]*"_b"
 
 {COMENTARIO}   { printf( "Un comentario: %s\n", yytext ); }
 
-[ \t\n]+          /* se come los espacios en blanco */
+[ \t\n]+          /* se come los espacios en blanco  */
 
 .                 {printf("error lexico %s, en la linea %d\n", yytext, yylineno); return yytext[0];}
 
